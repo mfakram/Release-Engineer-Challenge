@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rss-site
+  labels:
+    app: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cox_makram
+  template:
+    metadata:
+      labels:
+        app: cox_makram
+    spec:
+      containers:
+        - name: cox_akram
+          env:
+            # Below are the container environments that the question mentions about
+            - name: KUBE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: KUBE_SECRET.txt  
+          image: cox_akram
+          ports:
+            - containerPort: 88
+      
