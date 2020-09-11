@@ -1,0 +1,23 @@
+Steps followed
+
+(1) Fork the project: https://github.com/mfakram/Release-Engineer-Challenge
+(2) Write dockerfile and submit to github
+(3) Do Jenkins configurations at: http://18.224.30.246:8080/job/release_engineer_project/configure
+      (A) Set the repository
+      (B) Set the polling mechanism
+      (C) Setup the Kubectl CLI: This did not work. The error was 
+                “ERROR: No credentials defined to setup Kubernetes CLI”
+(4) Setup the execute shell section that does the following:
+   (A) After the clone, move to the project root where dockerfile is cloned
+   (B) Build the image with name cox_akram:currentTimeStamp 
+   (C) Push this image to the registry
+   (D) apply Kubernetes deployment that has all configurations like pod name and environment variable
+
+With this, with every change in version control, Jenkins will perform the build that will update the image and apply newly tagged image that is based on this submitted code.
+
+Content of my forked repository https://github.com/mfakram/Release-Engineer-Challenge:
+(1) Readme_MFAKRAM_RELEASE_ENGINEER_Assessment
+(2) code python file
+(3) README.MD
+(4) deployment.yaml
+(5) dockerfile
